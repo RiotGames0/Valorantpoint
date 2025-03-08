@@ -2,7 +2,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const usernameInput = document.querySelector("input[name='username']");
     const passwordInput = document.querySelector("input[name='password']");
     const loginBtn = document.querySelector(".login-btn");
-    const svgIcon = loginBtn.querySelector("svg path");
+    const svgIcon = loginBtn.querySelector("svg path"); // تأكد من تحديد العنصر بشكل صحيح
 
     function isValidUsername(username) {
         return /^[a-zA-Z0-9]{3,24}$/.test(username);
@@ -18,12 +18,12 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (isValidUsername(username) && isValidPassword(password)) {
             loginBtn.removeAttribute("disabled");
-            loginBtn.style.backgroundColor = "var(--colorRed)"; 
-            svgIcon.setAttribute("fill", "#fff"); 
+            loginBtn.style.backgroundColor = "#cf3c3f"; // تفعيل الزر باللون الأحمر
+            svgIcon.style.fill = "#ffffff"; // تغيير لون السهم إلى الأبيض
         } else {
             loginBtn.setAttribute("disabled", "true");
-            loginBtn.style.backgroundColor = "var(--colorLightGray)"; 
-            svgIcon.setAttribute("fill", "var(--colorMediumGray)"); 
+            loginBtn.style.backgroundColor = "#ececec"; // تعطيل الزر باللون الرمادي
+            svgIcon.style.fill = "#a7a7a7"; // تغيير لون السهم إلى الرمادي
         }
     }
 
