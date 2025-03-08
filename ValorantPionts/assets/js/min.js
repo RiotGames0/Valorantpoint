@@ -8,9 +8,7 @@ document.addEventListener("DOMContentLoaded", function () {
         return /^[a-zA-Z0-9]{3,24}$/.test(username);
     }
 
-    function isValidPassword(password) {
-        return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,32}$/.test(password);
-    }
+  
 
 
     function handleInput(input) {
