@@ -12,6 +12,16 @@ document.addEventListener("DOMContentLoaded", function () {
         return /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[!@#$%^&*])[A-Za-z\d!@#$%^&*]{8,32}$/.test(password);
     }
 
+
+    function handleInput(input) {
+    const span = input.previousElementSibling;
+    if (input.value !== "") {
+        span.style.opacity = "0";
+    } else {
+        span.style.opacity = "1";
+    }
+}
+
     function checkInputs() {
         const username = usernameInput.value.trim();
         const password = passwordInput.value.trim();
