@@ -1,44 +1,43 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="assets/css/style.css" />
-    <title>Riotgames | Login</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="assets/css/style.css">
+    <title>Riot Games | Login</title>
 </head>
 <body>
     <main class="main">
         <section class="section-login">
             <div class="container">
-                <img src="assets/img/logo.png" class="logo" alt="#" />
-
+                <img src="assets/img/logo.png" class="logo" alt="Logo">
                 <h1 class="section-title">Login</h1>
 
                 <label class="login-user">
-                    <span class="placeholder">Username</span>
-                    <input type="text" id="username" class="input" oninput="checkInputs()" />
+                    <span class="input-label">Username</span>
+                    <input type="text" id="username" class="input" oninput="handleInput(this)">
                 </label>
 
                 <label class="login-user">
-                    <span class="placeholder">Password</span>
-                    <input type="password" id="password" class="input" oninput="checkInputs()" />
+                    <span class="input-label">Password</span>
+                    <input type="password" id="password" class="input" oninput="handleInput(this)">
                 </label>
 
                 <div class="login-icons">
                     <button type="button" class="btn-social">
-                        <img src="assets/img/facebook-icon.png" alt="Facebook Icon" />
+                        <img src="assets/img/facebook-icon.png" alt="Facebook Icon">
                     </button>
                     <button type="button" class="btn-social">
-                        <img src="assets/img/google-icon.png" alt="Google Icon" />
+                        <img src="assets/img/google-icon.png" alt="Google Icon">
                     </button>
                     <button type="button" class="btn-social">
-                        <img src="assets/img/apple-icon.png" alt="Apple Icon" />
+                        <img src="assets/img/apple-icon.png" alt="Apple Icon">
                     </button>
                 </div>
 
                 <label class="section-checkbox">
-                    <input type="checkbox" id="input-checkbox" /> Keep me logged in
+                    <input type="checkbox" id="input-checkbox"> Keep me logged in
                 </label>
             </div>
 
