@@ -1,11 +1,6 @@
 function handleInput(input) {
     const label = input.previousElementSibling;
-    if (input.value.trim() !== "") {
-        label.style.opacity = "0";
-    } else {
-        label.style.opacity = "1";
-    }
-
+    label.style.opacity = input.value.trim() ? "0" : "1";
     checkInputs();
 }
 
