@@ -60,16 +60,17 @@ main {
 }
 
 .login-user {
-    display: flex;
-    margin-bottom: 5px;
+    position: relative;
     width: 100%;
+    margin-bottom: 15px;
 }
 
 .login-user span {
     position: absolute;
+    top: 15px;
+    left: 15px;
     color: var(--colorMediumGray);
-    font-size: 0.8em;
-    margin: 20px;
+    font-size: 0.9em;
     font-weight: bold;
     text-transform: uppercase;
     cursor: text;
@@ -83,20 +84,20 @@ main {
     background-color: var(--colorLightGray);
     border-radius: 5px;
     color: var(--colorDeepGray);
-    font-size: 0.9em;
-    padding: 25px 10px 10px;
+    font-size: 1em;
+    padding: 20px 10px 10px;
     font-weight: 600;
-    margin-bottom: 8px;
+}
+
+/* عند التركيز على الحقل، يخفي النص دون تغيير الأبعاد */
+.input:focus + span,
+.input:not(:placeholder-shown) + span {
+    opacity: 0;
 }
 
 .input:focus {
     background-color: var(--colorWhiteSecondary);
     border: 2px solid var(--colorDeepGray);
-}
-
-.login-user .span-active {
-    font-size: 0.7em;
-    margin: 8px 10px;
 }
 
 .login-icons {
@@ -166,16 +167,6 @@ main {
     margin: 2px 6px;
 }
 
-.login-btn:disabled {
-    cursor: auto;
-    background-color: white;
-    border: 2px solid var(--colorLightGray);
-}
-
-.login-btn:disabled svg {
-    fill: var(--colorMediumGray);
-}
-
 .login-btn {
     width: 60px;
     height: 60px;
@@ -183,12 +174,17 @@ main {
     margin-bottom: 60px;
     border-radius: 20px;
     border: none;
-    background-color: #cf3c3f;
+    background-color: var(--colorRed);
     cursor: pointer;
-
     display: flex;
     align-items: center;
     justify-content: center;
+}
+
+.login-btn:disabled {
+    cursor: auto;
+    background-color: white;
+    border: 2px solid var(--colorLightGray);
 }
 
 .login-btn svg {
