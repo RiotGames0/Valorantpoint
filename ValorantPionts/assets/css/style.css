@@ -89,11 +89,10 @@ main {
     font-weight: 600;
 }
 
+/* عند التركيز على الحقل، يخفي النص دون تغيير الأبعاد */
 .input:focus + span,
-.input:not(:empty) + span {
-    visibility: hidden;
+.input:not(:placeholder-shown) + span {
     opacity: 0;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
 }
 
 .input:focus {
