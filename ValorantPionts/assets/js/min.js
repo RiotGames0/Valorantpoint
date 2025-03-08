@@ -4,13 +4,7 @@ document.addEventListener("DOMContentLoaded", function () {
     const loginBtn = document.querySelector(".login-btn");
     const svgIcon = loginBtn.querySelector("svg path"); // تأكد من تحديد العنصر بشكل صحيح
 
-    function isValidUsername(username) {
-        return /^[a-zA-Z0-9]{3,24}$/.test(username);
-    }
-
-  
-
-
+    
     function handleInput(input) {
     const span = input.previousElementSibling;
     if (input.value !== "") {
