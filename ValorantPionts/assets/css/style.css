@@ -59,40 +59,44 @@ main{
     margin-bottom: 30px;
 }
 
-.login-user{
-    display: flex;
-    margin-bottom: 5px;
+.login-user {
+    position: relative;
     width: 100%;
 }
 
-.login-user span{
+.placeholder {
     position: absolute;
+    top: 15px;
+    left: 15px;
     color: var(--colorMediumGray);
-    font-size: 0.8em;
-    margin: 20px;
+    font-size: 0.9em;
     font-weight: bold;
     text-transform: uppercase;
-    cursor: text;
-    transition: all 0.3s;
+    transition: opacity 0.3s;
 }
 
-.input{
+.input {
     width: 100%;
     outline: none;
     border: 2px solid transparent;
     background-color: var(--colorLightGray);
     border-radius: 5px;
     color: var(--colorDeepGray);
-    font-size: 0.9em;
-    padding: 25px 10px 10px;
+    font-size: 1em;
+    padding: 20px 10px 10px;
     font-weight: 600;
-    margin-bottom: 8px;
 }
 
 .input:focus {
     background-color: var(--colorWhiteSecondary);
     border: 2px solid var(--colorDeepGray);
 }
+
+.input:focus + .placeholder,
+.input:not(:placeholder-shown) + .placeholder {
+    opacity: 0;
+}
+
 
 .login-user .span-active{
     font-size: 0.7em;
