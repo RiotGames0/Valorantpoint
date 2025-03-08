@@ -1,3 +1,8 @@
+document.addEventListener("DOMContentLoaded", function () {
+    const usernameInput = document.getElementById("username");
+    const passwordInput = document.getElementById("password");
+    const loginBtn = document.getElementById("login-btn");
+
 function handleInput(input) {
     const span = input.previousElementSibling;
     if (input.value !== "") {
